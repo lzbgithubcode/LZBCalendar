@@ -14,6 +14,8 @@
   if(self = [super init])
   {
       self.isNeedCustomHeihgt = YES;
+      self.today = [NSDate date];
+      
       self.headerViewDateHeight = 40;
       self.headerViewLineHeight = 1.0;
       self.headerViewWeekHeight = 40;
@@ -22,7 +24,16 @@
       self.headerViewWeekFont = [UIFont systemFontOfSize:16.0];
       self.headerViewWeekColor = [UIColor greenColor];
       self.headerViewDateColor = [UIColor whiteColor];
-      self.today = [NSDate date];
+      
+      self.itemHeight = 0;
+      self.dateTittleFont = [UIFont systemFontOfSize:16.0];
+      self.dateDescFont = [UIFont systemFontOfSize:16.0];
+      self.dateTittleSelectColor = [UIColor redColor];
+      self.dateTittleUnselectColor = [UIColor blackColor];
+      self.dateDescSelectColor = [UIColor blueColor];
+      self.dateDescUnselectColor = [UIColor blackColor];
+      self.dateTitleDescOffset = UIOffsetMake(0, 10);
+      
   }
     return self;
 }

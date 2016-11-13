@@ -12,7 +12,9 @@
 #pragma mark- head-data
 
 @property (nonatomic, assign) BOOL isNeedCustomHeihgt;
+@property (nonatomic, strong) NSDate *today;
 
+//头部style设置
 @property (nonatomic, assign) CGFloat headerViewDateHeight;
 @property (nonatomic, assign) CGFloat headerViewWeekHeight;
 @property (nonatomic, assign) CGFloat headerViewLineHeight;
@@ -22,7 +24,18 @@
 @property (nonatomic, strong) UIColor *headerViewWeekColor;
 @property (nonatomic, strong) UIColor *headerViewDateColor;
 
-@property (nonatomic, strong) NSDate *today;
+
+//日期sytle设置
+@property (nonatomic, assign) CGFloat itemHeight;
+@property (nonatomic, strong) UIFont *dateTittleFont;
+@property (nonatomic, strong) UIFont *dateDescFont;
+@property (nonatomic, strong) UIColor *dateTittleSelectColor;
+@property (nonatomic, strong) UIColor *dateTittleUnselectColor;
+@property (nonatomic, strong) UIColor *dateDescSelectColor;
+@property (nonatomic, strong) UIColor *dateDescUnselectColor;
+@property (nonatomic, assign) UIOffset dateTitleDescOffset;
+
+
 
 
 
