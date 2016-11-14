@@ -188,14 +188,29 @@
 - (NSDate *)lastMonthDate:(NSDate *)date
 {
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
-    dateComponents.month = -1;
+    NSInteger currentMonth = [self month:date];
+    if(currentMonth == 1)
+        {
+            dateComponents.year = -1;
+            dateComponents.month = +11;
+        }
+    else
+        dateComponents.month = -1;
+    
     NSDate *newDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:date options:NSCalendarWrapComponents];
     return newDate;
 }
 - (NSDate*)nextMonth:(NSDate *)date
 {
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
-    dateComponents.month = +1;
+    NSInteger currentMonth = [self month:date];
+    if(currentMonth == 12)
+        {
+            dateComponents.year = +1;
+            dateComponents.month = -11;
+        }
+    else
+        dateComponents.month = +1;
     NSDate *newDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:date options:NSCalendarWrapComponents];
     return newDate;
 }

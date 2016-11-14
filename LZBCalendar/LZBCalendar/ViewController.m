@@ -10,7 +10,7 @@
 #import "LZBCalendar.h"
 #import "LZBCalendarAppearStyle.h"
 
-@interface ViewController ()
+@interface ViewController ()<LZBCalendarDataSource>
 
 @property (nonatomic, strong) LZBCalendar *calendar;
 @property (nonatomic, strong)  LZBCalendarAppearStyle *style;
@@ -32,6 +32,10 @@
 
 
 
+- (NSString *)calendar:(LZBCalendar *)calendar titleForDate:(NSDate *)date
+{
+  return @"1";
+}
 
 #pragma mark - lazy
 - (LZBCalendar *)calendar
@@ -39,6 +43,7 @@
   if(_calendar == nil)
   {
       _calendar = [[LZBCalendar alloc]initWithStyle:self.style];
+      _calendar.dataSource = self;
   }
     return _calendar;
 }

@@ -75,6 +75,13 @@
 }
 
 
+- (NSDateComponents *)getDateComponentsFromDate:(NSDate *)date
+{
+    NSDateComponents *component = [[NSCalendar currentCalendar] components:
+                                   (NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
+    return component;
+}
+
 #pragma mark - lazy
 - (UILabel *)dateLabel
 {
