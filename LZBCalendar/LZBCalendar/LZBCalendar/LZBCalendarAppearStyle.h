@@ -11,8 +11,10 @@
 
 #pragma mark- head-data
 
+//controll setting
 @property (nonatomic, assign) BOOL isNeedCustomHeihgt;
 @property (nonatomic, strong) NSDate *today;
+@property (nonatomic, assign) BOOL isSupportMoreSelect;
 
 //头部style设置
 @property (nonatomic, assign) CGFloat headerViewDateHeight;
@@ -31,6 +33,8 @@
 @property (nonatomic, strong) UIFont *dateDescFont;
 @property (nonatomic, strong) UIColor *dateTittleSelectColor;
 @property (nonatomic, strong) UIColor *dateTittleUnselectColor;
+@property (nonatomic, strong) UIColor *dateBackSelectColor;
+@property (nonatomic, strong) UIColor *dateBackUnselectColor;
 @property (nonatomic, strong) UIColor *dateDescSelectColor;
 @property (nonatomic, strong) UIColor *dateDescUnselectColor;
 @property (nonatomic, assign) UIOffset dateTitleDescOffset;

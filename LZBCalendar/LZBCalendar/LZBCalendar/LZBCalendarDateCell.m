@@ -74,6 +74,25 @@
     [self reloadCellDataWithSubtitle:subtitle];
 }
 
+- (void)updateCellSelectBackgroundColor
+{
+    self.contentView.backgroundColor = self.isSelected?self.style.dateBackSelectColor:self.style.dateBackUnselectColor;
+}
+- (void)updateCellSelectTitleColor
+{
+     self.dateLabel.textColor = self.isSelected?self.style.dateTittleSelectColor:self.style.dateTittleUnselectColor;
+}
+- (void)updateCellSelectSubtitleColor
+{
+   self.descLabel.textColor = self.isSelected?self.style.dateDescSelectColor:self.style.dateDescUnselectColor;
+}
+- (void)updateCellSelectCellColor
+{
+    [self updateCellSelectTitleColor];
+    [self updateCellSelectSubtitleColor];
+    [self updateCellSelectBackgroundColor];
+}
+
 
 - (NSDateComponents *)getDateComponentsFromDate:(NSDate *)date
 {

@@ -32,6 +32,9 @@
       self.dateTittleUnselectColor = [UIColor blackColor];
       self.dateDescSelectColor = [UIColor blueColor];
       self.dateDescUnselectColor = [UIColor blackColor];
+      self.dateBackUnselectColor = [UIColor whiteColor];
+      self.dateBackSelectColor = [UIColor orangeColor];
+      self.isSupportMoreSelect = NO;
       self.dateTitleDescOffset = UIOffsetMake(0, 10);
       
   }

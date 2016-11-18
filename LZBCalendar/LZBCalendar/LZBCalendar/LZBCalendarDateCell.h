@@ -16,4 +16,10 @@
 - (void)reloadCellDataWithTitle:(NSString *)title;
 - (void)reloadCellDataWithSubtitle:(NSString *)subtitle;
 - (void)reloadCellDataWithTitle :(NSString *)title  subTitle:(NSString *)subtitle;
+
+//选中颜色
+- (void)updateCellSelectBackgroundColor;
+- (void)updateCellSelectTitleColor;
+- (void)updateCellSelectSubtitleColor;
+- (void)updateCellSelectCellColor;
 @end

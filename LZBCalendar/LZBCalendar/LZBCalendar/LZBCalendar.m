@@ -16,7 +16,7 @@
 
 static NSString *LZBCalendarDateCellID = @"LZBCalendarDateCellID";
 
-@interface LZBCalendar()<UICollectionViewDataSource>
+@interface LZBCalendar()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (nonatomic, assign) CGFloat itemHeight;
 @property (nonatomic, strong) LZBCalendarAppearStyle *style;
@@ -24,6 +24,7 @@ static NSString *LZBCalendarDateCellID = @"LZBCalendarDateCellID";
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UICollectionViewFlowLayout *collectFlowLayout;
+@property (nonatomic, strong) LZBCalendarDateCell *currentSelctCell;
 @end
 
 @implementation LZBCalendar
@@ -98,6 +99,7 @@ static NSString *LZBCalendarDateCellID = @"LZBCalendarDateCellID";
     self.collectionView.frame = CGRectMake(0, 0, self.bounds.size.width, collectionViewHeight);
     self.contentView.frame = CGRectMake(0, CGRectGetMaxY(self.headerView.frame), self.bounds.size.width, collectionViewHeight);
     [self.collectionView setCollectionViewLayout:self.collectFlowLayout];
+    [self callBackHeight:collectionViewHeight+self.style.headerViewHeihgt];
 }
 
 
@@ -133,12 +135,12 @@ static NSString *LZBCalendarDateCellID = @"LZBCalendarDateCellID";
         day = indexPath.row - marginDays +1;
         NSDate *date = [self dateByday:day toDate:self.style.today];
         if([self titleForDate:date].length > 0)
-             [cell reloadCellDataWithTitle:[self titleForDate:self.style.today]];
+             [cell reloadCellDataWithTitle:[self titleForDate:date]];
         else
             [cell reloadCellDataWithTitle:[NSString stringWithFormat:@"%ld",day]];
         
         if([self subtitleForDate:date].length > 0)
-            [cell reloadCellDataWithSubtitle:[self titleForDate:self.style.today]];
+            [cell reloadCellDataWithSubtitle:[self subtitleForDate:date]];
         else
             [cell reloadCellDataWithSubtitle:@""];
         
@@ -148,6 +150,56 @@ static NSString *LZBCalendarDateCellID = @"LZBCalendarDateCellID";
     return cell;
 }
 
+
+#pragma mark -- collectCell- Delegate
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger marginDays = [self firstDayInFirstWeekThisMonth:self.style.today];
+    NSInteger daysThisMonth = [self totalDaysThisMonth:self.style.today];
+    if(indexPath.row >=marginDays && indexPath.row <=marginDays + daysThisMonth - 1)
+    {
+        NSInteger day = 0;
+        day = indexPath.row - marginDays +1;
+        NSDate *date = [self dateByday:day toDate:self.style.today];
+        return [self shouldSelectDate:date];
+    }
+    else
+        return NO;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger marginDays = [self firstDayInFirstWeekThisMonth:self.style.today];
+    NSInteger daysThisMonth = [self totalDaysThisMonth:self.style.today];
+    if(indexPath.row >=marginDays && indexPath.row <=marginDays + daysThisMonth - 1)
+    {
+        NSInteger day = 0;
+        day = indexPath.row - marginDays +1;
+        NSDate *date = [self dateByday:day toDate:self.style.today];
+        
+        LZBCalendarDateCell *cell = (LZBCalendarDateCell *)[collectionView cellForItemAtIndexPath:indexPath];
+       if(self.style.isSupportMoreSelect)
+       {
+            [self didSelectDate:date];
+            [cell updateCellSelectCellColor];
+       }
+        else
+        {
+            if([self.currentSelctCell isEqual:cell])
+                return;
+            self.currentSelctCell.selected = NO;
+            [self.currentSelctCell  updateCellSelectCellColor];
+            cell.selected = YES;
+            self.currentSelctCell = cell;
+            [self didSelectDate:date];
+            [cell updateCellSelectCellColor];
+    
+            
+        }
+    }
+    else
+        [self collectionView:collectionView didDeselectItemAtIndexPath:indexPath];
+}
 
 
 #pragma mark- private
@@ -200,6 +252,30 @@ static NSString *LZBCalendarDateCellID = @"LZBCalendarDateCellID";
     return nil;
 }
 
+- (void)callBackHeight:(CGFloat)height
+{
+    if (_dataSource && [_dataSource respondsToSelector:@selector(calendar:layoutCallBackHeight:)]) {
+        [_dataSource calendar:self layoutCallBackHeight:height];
+    }
+}
+#pragma mark - Delegate
+
+- (BOOL)shouldSelectDate:(NSDate *)date
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(calendar:shouldSelectDate:)]) {
+        return [_delegate calendar:self shouldSelectDate:date];
+    }
+    return YES;
+}
+
+- (void)didSelectDate:(NSDate *)date
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(calendar:didSelectDate:)]) {
+        [_delegate calendar:self didSelectDate:date];
+    }
+}
+
+
 
 
 #pragma mark - lazy
@@ -227,6 +303,7 @@ static NSString *LZBCalendarDateCellID = @"LZBCalendarDateCellID";
   {
       _collectionView = [[UICollectionView alloc]initWithFrame:self.contentView.bounds collectionViewLayout:self.collectFlowLayout];
       _collectionView.dataSource = self;
+      _collectionView.delegate = self;
       _collectionView.backgroundColor = [UIColor whiteColor];
   }
     return _collectionView;
