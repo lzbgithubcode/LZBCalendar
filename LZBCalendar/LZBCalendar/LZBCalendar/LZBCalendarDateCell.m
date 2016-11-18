@@ -8,6 +8,8 @@
 
 #import "LZBCalendarDateCell.h"
 
+#define animation_Duration 0.25
+
 @interface LZBCalendarDateCell()
 
 @property (nonatomic, strong) UILabel *dateLabel;
@@ -44,6 +46,8 @@
     }
     
 }
+
+
 
 #pragma mark- API
 - (void)setStyle:(LZBCalendarAppearStyle *)style
@@ -88,12 +92,33 @@
 }
 - (void)updateCellSelectCellColor
 {
+    [self updateCellSelectCellColorWithAnimation:NO];
+}
+
+- (void)updateCellSelectCellColorWithAnimation:(BOOL)animation
+{
+    if(animation)
+    {
+        [self addAnimationToView:self];
+    }
     [self updateCellSelectTitleColor];
     [self updateCellSelectSubtitleColor];
     [self updateCellSelectBackgroundColor];
+    
 }
 
 
+
+
+#pragma mark - handle
+
+- (void)addAnimationToView:(UIView *)animationView
+{
+    CAKeyframeAnimation *keyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
+    keyAnimation.values = @[@0.8,@1.0,@1.2,@1.1,@1.0];
+    keyAnimation.duration = animation_Duration;
+    [animationView.layer addAnimation:keyAnimation forKey:@"scale"];
+}
 - (NSDateComponents *)getDateComponentsFromDate:(NSDate *)date
 {
     NSDateComponents *component = [[NSCalendar currentCalendar] components:

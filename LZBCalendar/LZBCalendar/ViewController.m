@@ -80,7 +80,7 @@
     }
 }
 
-- (void)calendar:(LZBCalendar *)calendar heightForItem:(CGFloat)height
+- (void)calendar:(LZBCalendar *)calendar layoutCallBackHeight:(CGFloat)height
 {
     self.calendar.frame = CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, height);
 }
@@ -108,6 +108,7 @@
   if(_style == nil)
   {
       _style = [[LZBCalendarAppearStyle alloc]init];
+      _style.isNeedCustomHeihgt = YES;
   }
     return _style;
 }

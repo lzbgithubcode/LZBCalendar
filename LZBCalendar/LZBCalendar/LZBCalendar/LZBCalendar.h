@@ -13,6 +13,12 @@
 
 @protocol LZBCalendarDataSource <NSObject>
 
+@required
+/**
+ * Tells the dataSource a call back is the calendar of height.
+ */
+- (void)calendar:(LZBCalendar *)calendar layoutCallBackHeight:(CGFloat)height;
+
 @optional
 /**
  * Asks the dataSource for a title for the specific date as a replacement of the day text
@@ -24,10 +30,7 @@
  */
 - (NSString *)calendar:(LZBCalendar *)calendar subtitleForDate:(NSDate *)date;
 
-/**
- * Tells the delegate a date in the calendar is selected by tapping.
- */
-- (void)calendar:(LZBCalendar *)calendar layoutCallBackHeight:(CGFloat)height;
+
 
 @end
 

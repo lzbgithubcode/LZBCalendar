@@ -22,4 +22,5 @@
 - (void)updateCellSelectTitleColor;
 - (void)updateCellSelectSubtitleColor;
 - (void)updateCellSelectCellColor;
+- (void)updateCellSelectCellColorWithAnimation:(BOOL)animation;
 @end

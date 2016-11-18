@@ -192,7 +192,7 @@ static NSString *LZBCalendarDateCellID = @"LZBCalendarDateCellID";
             cell.selected = YES;
             self.currentSelctCell = cell;
             [self didSelectDate:date];
-            [cell updateCellSelectCellColor];
+            [cell updateCellSelectCellColorWithAnimation:YES];
     
             
         }
