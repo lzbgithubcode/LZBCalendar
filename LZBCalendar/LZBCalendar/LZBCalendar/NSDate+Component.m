@@ -10,19 +10,19 @@
 
 @implementation NSDate (Component)
 
-- (NSInteger)getDateWithDay:(NSDate *)date
+- (NSInteger)getDateWithDay
 {
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:self];
     return [components day];
 }
-- (NSInteger)getDateWithMonth:(NSDate *)date
+- (NSInteger)getDateWithMonth
 {
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:self];
     return [components month];
 }
-- (NSInteger)getDateWithYear:(NSDate *)date
+- (NSInteger)getDateWithYear
 {
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:self];
     return [components year];
 }
 @end

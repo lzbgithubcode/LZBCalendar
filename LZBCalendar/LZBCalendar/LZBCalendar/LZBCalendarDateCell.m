@@ -23,6 +23,7 @@
 {
   if(self = [super initWithFrame:frame])
   {
+      self.contentView.backgroundColor = [UIColor whiteColor];
       [self.contentView addSubview:self.dateLabel];
       [self.contentView addSubview:self.descLabel];
   }

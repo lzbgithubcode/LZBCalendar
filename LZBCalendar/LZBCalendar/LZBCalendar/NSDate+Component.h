@@ -12,22 +12,19 @@
 
 /**
   Get the  date of day
- @param date date
  @return day
  */
-- (NSInteger)getDateWithDay:(NSDate *)date;
+- (NSInteger)getDateWithDay;
 
 /**
  Get the  date of month
- @param date date
  @return month
  */
-- (NSInteger)getDateWithMonth:(NSDate *)date;
+- (NSInteger)getDateWithMonth;
 
 /**
  Get the  date of year
- @param date date
  @return year
  */
-- (NSInteger)getDateWithYear:(NSDate *)date;
+- (NSInteger)getDateWithYear;
 @end

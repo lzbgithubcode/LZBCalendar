@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "LZBCalendar.h"
 #import "LZBCalendarAppearStyle.h"
+#import "NSDate+Component.h"
 
 @interface ViewController ()<LZBCalendarDataSource,LZBCalendarDataDelegate>
 
@@ -42,9 +43,9 @@
 #pragma mark - dataSoure
 - (NSString *)calendar:(LZBCalendar *)calendar titleForDate:(NSDate *)date
 {
-    if([self month:[NSDate date]] == [self month:date])
+    if([[NSDate date] getDateWithMonth] == [date getDateWithMonth])
     {
-        NSInteger result =[self day:[NSDate date]] - [self day:date];
+        NSInteger result =[[NSDate date] getDateWithDay] -[date getDateWithDay];
         switch (result) {
             case 0:
                 return @"今天";
@@ -67,7 +68,7 @@
 
 - (NSString *)calendar:(LZBCalendar *)calendar subtitleForDate:(NSDate *)date
 {
-    NSInteger result = [self day:date];
+    NSInteger result = [date getDateWithDay];
     switch (result) {
         case 1:
             return @"10";
@@ -90,15 +91,6 @@
     self.calendar.frame = CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, height);
 }
 
-
-- (NSInteger)day:(NSDate *)date{
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
-    return [components day];
-}
-- (NSInteger)month:(NSDate *)date{
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
-    return [components month];
-}
 
 #pragma mark - lazy
 - (LZBCalendar *)calendar
