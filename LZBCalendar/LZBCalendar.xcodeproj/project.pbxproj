@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		189D72341DE09F4500D631E2 /* NSDate+Component.m in Sources */ = {isa = PBXBuildFile; fileRef = 189D72331DE09F4500D631E2 /* NSDate+Component.m */; };
 		18B5253E1DD84D2A00A63D9C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5253D1DD84D2A00A63D9C /* main.m */; };
 		18B525411DD84D2A00A63D9C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B525401DD84D2A00A63D9C /* AppDelegate.m */; };
 		18B525441DD84D2A00A63D9C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B525431DD84D2A00A63D9C /* ViewController.m */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		189D72321DE09F4500D631E2 /* NSDate+Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Component.h"; sourceTree = "<group>"; };
+		189D72331DE09F4500D631E2 /* NSDate+Component.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Component.m"; sourceTree = "<group>"; };
 		18B525391DD84D2A00A63D9C /* LZBCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LZBCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18B5253D1DD84D2A00A63D9C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18B5253F1DD84D2A00A63D9C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -103,6 +106,8 @@
 				18B525611DD85B2900A63D9C /* LZBCalendarAppearStyle.m */,
 				18B525681DD87D6100A63D9C /* LZBCalendarDateCell.h */,
 				18B525691DD87D6100A63D9C /* LZBCalendarDateCell.m */,
+				189D72321DE09F4500D631E2 /* NSDate+Component.h */,
+				189D72331DE09F4500D631E2 /* NSDate+Component.m */,
 			);
 			path = LZBCalendar;
 			sourceTree = "<group>";
@@ -181,6 +186,7 @@
 			files = (
 				18B525441DD84D2A00A63D9C /* ViewController.m in Sources */,
 				18B525621DD85B2900A63D9C /* LZBCalendarAppearStyle.m in Sources */,
+				189D72341DE09F4500D631E2 /* NSDate+Component.m in Sources */,
 				18B525411DD84D2A00A63D9C /* AppDelegate.m in Sources */,
 				18B5256A1DD87D6100A63D9C /* LZBCalendarDateCell.m in Sources */,
 				18B5255F1DD8591300A63D9C /* LZBCalendarHeaderView.m in Sources */,

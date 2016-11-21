@@ -42,22 +42,27 @@
 #pragma mark - dataSoure
 - (NSString *)calendar:(LZBCalendar *)calendar titleForDate:(NSDate *)date
 {
-    NSInteger result =[self day:[NSDate date]] - [self day:date];
-    switch (result) {
-        case 0:
-            return @"今天";
-            break;
-        case 1:
-            return @"昨天";
-            break;
-        case -1:
-             return @"明天";
-            break;
-            
-        default:
-            return nil;
-            break;
+    if([self month:[NSDate date]] == [self month:date])
+    {
+        NSInteger result =[self day:[NSDate date]] - [self day:date];
+        switch (result) {
+            case 0:
+                return @"今天";
+                break;
+            case 1:
+                return @"昨天";
+                break;
+            case -1:
+                 return @"明天";
+                break;
+                
+            default:
+                return nil;
+                break;
+        }
     }
+    else
+        return nil;
 }
 
 - (NSString *)calendar:(LZBCalendar *)calendar subtitleForDate:(NSDate *)date
@@ -89,6 +94,10 @@
 - (NSInteger)day:(NSDate *)date{
     NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
     return [components day];
+}
+- (NSInteger)month:(NSDate *)date{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
+    return [components month];
 }
 
 #pragma mark - lazy
