@@ -121,6 +121,8 @@ static NSString *LZBCalendarDateCellID = @"LZBCalendarDateCellID";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     LZBCalendarDateCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:LZBCalendarDateCellID forIndexPath:indexPath];
+    cell.selected = NO;
+    [cell  updateCellSelectCellColor];
     cell.style = self.style;
     NSInteger marginDays = [self firstDayInFirstWeekThisMonth:self.style.today];
     NSInteger daysThisMonth = [self totalDaysThisMonth:self.style.today];
